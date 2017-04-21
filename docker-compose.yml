@@ -12,10 +12,19 @@ services:
       # disable X-Pack
       # see https://www.elastic.co/guide/en/x-pack/current/xpack-settings.html
       #     https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html#xpack-enabling
+      http.cors.enabled: "true"
+      http.cors.allow-origin: "*"
       xpack.security.enabled: "false"
       xpack.monitoring.enabled: "false"
       xpack.graph.enabled: "false"
       xpack.watcher.enabled: "false"
+    networks:
+      - elk
+
+  elasticsearch-head:
+    image: mobz/elasticsearch-head:5
+    ports:
+      - "9100:9100"
     networks:
       - elk
 
